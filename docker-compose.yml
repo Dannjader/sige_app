@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  sige_db:
+    image: postgres:17-bookworm
+    environment:
+      DB_NAME: gestiontic
+      DB_USER: dannjader
+      DB_PASS: admintic2024+/
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  web:
+    build: .
+    restart: always
+    command: gunicorn gestiontic.wsgi:application --bind 0.0.0.0:8001
+    volumes:
+      - .:/app
+      - ./logs:/app/logs
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./.env
+    depends_on:
+      - sige_db
+    environment:
+      DB_NAME: gestiontic
+      DB_USER: dannjader
+      DB_PASS: admintic2024+/
+      DB_HOST: sige_db
+
+volumes:
+  postgres_data:
