@@ -13,7 +13,7 @@ services:
   web:
     build: .
     restart: always
-    command: gunicorn gestiontic.wsgi:application --bind 0.0.0.0:8001
+    command: gunicorn gestiontic.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - .:/app
       - ./logs:/app/logs
