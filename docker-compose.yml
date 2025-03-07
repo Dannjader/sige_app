@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   sige_db:
-    image: postgres:17-bookworm
+    image: postgres:latest
     environment:
       DB_NAME: gestiontic
       DB_USER: dannjader
@@ -13,7 +13,7 @@ services:
   web:
     build: .
     restart: always
-    command: gunicorn gestiontic.wsgi:application --bind 0.0.0.0:8000
+    command: gunicorn sige_app.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - .:/app
       - ./logs:/app/logs
