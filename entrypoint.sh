@@ -1,4 +1,5 @@
 #!/bin/sh
+# Asegúrate de que este script tenga permisos ejecutables: chmod +x entrypoint.sh
 
 echo 'Applying migrations...'
 python manage.py migrate --no-input

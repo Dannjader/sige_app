@@ -13,7 +13,8 @@ services:
   web:
     build: .
     restart: always
-    command: gunicorn sige_app.wsgi:application --bind 0.0.0.0:8000
+    command: gunicorn sige_app.wsgi:application --workers=3 --bind 0.0.0.0:8000
+# Ajuste del número de workers según buena práctica común
     volumes:
       - .:/app
       - ./logs:/app/logs

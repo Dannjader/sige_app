@@ -7,10 +7,10 @@ WORKDIR /app
 
 COPY ./requirements.txt /app/requirements.txt
 
-RUN pip install -r requirements.txt && \
-    pip install --upgrade pip && \
-    pip install whitenoise
+RUN python -m pip install --upgrade pip && \
+    pip install -r requirements.txt 
+# Optimización de orden de instalación para maximizar la caché de Docker
 
-COPY ./entrypoint.sh /app/entrypoint.sh
+COPY . /app
 
 CMD ["sh", "/app/entrypoint.sh"]
